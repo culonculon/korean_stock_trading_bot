@@ -1,0 +1,28 @@
+# 환경 변수 파일
+.env
+
+# 토큰 파일
+data/kis_token.json
+
+# 데이터베이스 파일
+data/stock_data.db
+
+# Python 캐시 파일
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 가상 환경
+venv/
+env/
+ENV/
+
+# IDE 설정 파일
+.vscode/
+.idea/
+
+# 로그 파일
+*.log
+
+# 기타 임시 파일
+.DS_Store
