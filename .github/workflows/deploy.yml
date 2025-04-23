@@ -26,7 +26,21 @@ jobs:
           pip install pytest
 
       - name: Run tests
+        env:
+          # 테스트 환경에서 사용할 더미 환경 변수 설정
+          KIS_APP_KEY: "test_app_key"
+          KIS_APP_SECRET: "test_app_secret"
+          KIS_ACC_NO: "test_acc_no"
+          KIS_MOCK_APP_KEY: "test_mock_app_key"
+          KIS_MOCK_APP_SECRET: "test_mock_app_secret"
+          KIS_MOCK_ACC_NO: "test_mock_acc_no"
+          KIS_USE_MOCK: "true"
+          KIS_TOKEN_PATH: "data/test_token.json"
+          PYTHONPATH: ${{ github.workspace }}
         run: |
+          # 테스트 데이터 디렉토리 생성
+          mkdir -p data
+          # 테스트 실행
           pytest -xvs tests/  # 테스트 파일이 tests/ 디렉토리에 있다고 가정
 
   deploy:
