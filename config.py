@@ -1,15 +1,16 @@
 # 한국 주식 트레이딩 봇 설정 파일
 
 # 모니터링할 주식 목록 (종목코드)
+from dotenv import load_dotenv
+import os
 STOCK_CODES = [
     '226330',  # 신테카 바이오
+    '035510',  # 신세계 I&C
 ]
 
 # 데이터 업데이트 주기 (초)
 UPDATE_INTERVAL = 60
 
-import os
-from dotenv import load_dotenv
 
 # .env 파일 로드 (로컬 개발 환경용)
 load_dotenv()
@@ -24,8 +25,10 @@ KIS_API = {
     'mock_acc_no': os.getenv('KIS_MOCK_ACC_NO', ''),  # 모의 투자 계좌번호
     'base_url': 'https://openapi.koreainvestment.com:9443',  # API 기본 URL
     'mock_url': 'https://openapivts.koreainvestment.com:29443',  # 모의투자 API URL
-    'use_mock': os.getenv('KIS_USE_MOCK', 'True').lower() == 'true',  # 모의투자 사용 여부
-    'token_path': os.getenv('KIS_TOKEN_PATH', 'data/kis_token.json'),  # 토큰 저장 경로
+    # 모의투자 사용 여부
+    'use_mock': os.getenv('KIS_USE_MOCK', 'True').lower() == 'true',
+    # 토큰 저장 경로
+    'token_path': os.getenv('KIS_TOKEN_PATH', 'data/kis_token.json'),
 }
 
 # 기술적 지표 설정
@@ -74,7 +77,7 @@ BACKTEST = {
     'risk_management': {
         'stop_loss_pct': 3.0,     # 손절매 비율 (%)
         'take_profit_pct': 5.0,   # 익절매 비율 (%)
-        'max_position_pct': 20.0, # 최대 포지션 비율 (%)
+        'max_position_pct': 20.0,  # 최대 포지션 비율 (%)
         'max_loss_pct': 10.0      # 최대 손실 비율 (%)
     }
 }
